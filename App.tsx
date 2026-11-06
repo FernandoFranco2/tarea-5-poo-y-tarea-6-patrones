@@ -11,7 +11,9 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { Libro } from './src/models/Libro';
 import { LibroService } from './src/services/LibroService';
+import { pruebaSingleton } from './src/tests/pruebaSingleton';
 
+pruebaSingleton();
 const servicio = new LibroService();
 
 export default function App() {

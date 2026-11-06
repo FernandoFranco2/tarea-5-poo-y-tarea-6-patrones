@@ -14,16 +14,28 @@ mis-libros/
 └── src/
     ├── models/
     │   └── Libro.ts
-    └── services/
-        └── LibroService.ts
+    ├── repositories/
+    │   └── LibroRepository.ts
+    ├── services/
+    │   └── LibroService.ts
+    └── tests/
+        └── pruebaSingleton.ts
 ```
-`App.tsx` → `LibroService` → `Libro`
+`App.tsx` → `LibroService` → `LibroRepository` → Datos Mock
 
 ## Ejecución
 ```
 npm install
 npx expo start
 ```
+
+## Cambios de la Tarea 6: Repository y Singleton
+
+- **Repository:** se creo `src/repositories/LibroRepository.ts`, que ahora administra la colección de libros (obtener, agregar y eliminar) y contiene los datos mock iniciales. `LibroService` ya no guarda la lista: valida los datos y delega en el repositorio. `App.tsx` solo usa el servicio.
+- **Singleton:** `LibroRepository` tiene `private static instancia`, constructor `private` y `public static getInstance()`. `LibroService` obtiene el repositorio con `LibroRepository.getInstance()`.
+- **Prueba:** `src/tests/pruebaSingleton.ts` llama dos veces a `getInstance()` y muestra en la consola si ambas son la misma instancia (`true`).
+
+## Capturas
 
 ## Reflexión
 
